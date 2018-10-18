@@ -24,10 +24,16 @@ class ViewController: GLKViewController {
 
     var context: EAGLContext?
     
+    /*
     var Vertices = [Vertex(x:  1, y: -1, z: 0, r: 1, g: 0, b: 0, a: 1), // 右下
                     Vertex(x:  1, y:  1, z: 0, r: 0, g: 1, b: 0, a: 1), // 右上
                     Vertex(x: -1, y:  1, z: 0, r: 0, g: 0, b: 1, a: 1), // 左上
                     Vertex(x: -1, y: -1, z: 0, r: 0, g: 0, b: 0, a: 1)] //左下
+    */
+    var Vertices = [Vertex(x:  0.5, y: -0.5, z: 0, r: 1, g: 0, b: 0, a: 1),
+                    Vertex(x:  0.5, y:  0.5, z: 0, r: 0, g: 1, b: 0, a: 1),
+                    Vertex(x: -0.5, y:  0.5, z: 0, r: 0, g: 0, b: 1, a: 1),
+                    Vertex(x: -0.5, y: -0.5, z: 0, r: 0, g: 0, b: 0, a: 1)]
     
     var Indices: [GLubyte] = [0, 1, 2,
                               2, 3, 0]
@@ -156,6 +162,7 @@ class ViewController: GLKViewController {
 extension ViewController: GLKViewControllerDelegate {
     
     func glkViewControllerUpdate(_ controller: GLKViewController) {
+        /*
         // calculates the aspect ration of the GLKView
         let aspect = fabsf(Float(view.frame.width) / Float(view.frame.height))
         // use built-in function to create a perspective matrix, filed of view radians, aspect, near panel, far panel
@@ -169,12 +176,12 @@ extension ViewController: GLKViewControllerDelegate {
         
         modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(rotation), 0, 0, 1)
         effect.transform.modelviewMatrix = modelViewMatrix
-
+        */
     }
 }
 
 extension Array {
     var size: Int {
-        return MemoryLayout<Element>.size * count
+        return MemoryLayout<Element>.stride * count
     }
 }
