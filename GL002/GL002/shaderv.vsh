@@ -4,10 +4,13 @@ uniform mat4 rotateMatrix;
 
 varying lowp vec2 varyTextCoord;
 
-void mian()
+void main()
 {
-    varyTextCoord = textCorrdinate;
+    varyTextCoord = textCoordinate;
+    
     vec4 vPos = position;
+    
     vPos = vPos * rotateMatrix;
+    
     gl_Position = vPos;
 }

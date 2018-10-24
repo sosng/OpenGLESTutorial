@@ -53,17 +53,23 @@ class GLView: UIView {
         var linkSuccess = GLint()
         glGetProgramiv(program, GLenum(GL_LINK_STATUS), &linkSuccess)
         if linkSuccess == GL_FALSE {
-            var log = ""
-            var logLength: GLint = 0
-            var infoLog = Array<GLchar>(repeating: 0, count: Int(logLength))
-            glGetProgramInfoLog(program, logLength, &logLength, &infoLog)
-            log = String(utf8String: &infoLog) ?? log
-            print("Program link log:\n" + log)
-            return
+            var infoLength: GLsizei = 0
+            var bufferLength: GLsizei = 1024
+            
+            glGetShaderiv(program, GLenum(GL_INFO_LOG_LENGTH), &infoLength)
+            let info = Array(repeating: GLchar(0), count: Int(bufferLength))
+            
+            var actualLength: GLsizei = 0
+            glGetShaderInfoLog(program, bufferLength, &actualLength, UnsafeMutablePointer(mutating: info))
+            
+            print("=============\nshader link status info: \(info)\n=============")
+
+//            return
         } else {
             print("Program link success")
             glUseProgram(program)
         }
+        glUseProgram(program)
 
         // 顶点
         let vertecies = [Vertex(0.5, -0.5, 1.0, 1.0, 0.0),
@@ -103,11 +109,11 @@ class GLView: UIView {
                                     0, 0, 0, 1,0]
         glDrawArrays(GLenum(GL_TRIANGLES), 0, 6)
         context?.presentRenderbuffer(Int(GL_RENDERBUFFER))
-        
     }
     
     private func setupContext() {
         context = EAGLContext(api: .openGLES2)
+        EAGLContext.setCurrent(context)
     }
     
     private func setupLayer() {
@@ -139,20 +145,18 @@ class GLView: UIView {
         renderBuffer = 0
     }
     
-    
     private func load(vertexShader vertName: String, fragmentShader fragName: String) -> GLuint {
         
         var vertShader = GLuint()
-        var fragSahder = GLuint()
+        var fragShader = GLuint()
         
         var program = glCreateProgram()
         compile(shader: &vertShader, type: GLenum(GL_VERTEX_SHADER), file: vertName)
-        compile(shader: &fragSahder, type: GLenum(GL_FRAGMENT_SHADER), file: fragName)
+        compile(shader: &fragShader, type: GLenum(GL_FRAGMENT_SHADER), file: fragName)
         
         glDeleteShader(vertShader)
-        glDeleteShader(fragSahder)
+        glDeleteShader(fragShader)
         return program
-        
     }
     
     private func compile(shader: inout GLuint, type: GLenum, file: String) {

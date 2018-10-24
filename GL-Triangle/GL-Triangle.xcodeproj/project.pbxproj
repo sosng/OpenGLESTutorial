@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A27779721801FEE00E46FDD /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A27779621801FEE00E46FDD /* Shader.swift */; };
 		4AE3C7912176DC0200E76805 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3C7902176DC0200E76805 /* AppDelegate.swift */; };
 		4AE3C7932176DC0200E76805 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3C7922176DC0200E76805 /* ViewController.swift */; };
 		4AE3C7962176DC0200E76805 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AE3C7942176DC0200E76805 /* Main.storyboard */; };
@@ -14,7 +15,7 @@
 		4AE3C79B2176DC0500E76805 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AE3C7992176DC0500E76805 /* LaunchScreen.storyboard */; };
 		4AE3C7A62176DC0500E76805 /* GL_TriangleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3C7A52176DC0500E76805 /* GL_TriangleTests.swift */; };
 		4AE3C7B12176DC0500E76805 /* GL_TriangleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3C7B02176DC0500E76805 /* GL_TriangleUITests.swift */; };
-		4AE3C7BF2176DDFA00E76805 /* GLTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3C7BE2176DDFA00E76805 /* GLTriangleView.swift */; };
+		4AE3C7BF2176DDFA00E76805 /* GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3C7BE2176DDFA00E76805 /* GLView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A27779621801FEE00E46FDD /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
 		4AE3C78D2176DC0200E76805 /* GL-Triangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GL-Triangle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE3C7902176DC0200E76805 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AE3C7922176DC0200E76805 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +50,7 @@
 		4AE3C7AC2176DC0500E76805 /* GL-TriangleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GL-TriangleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE3C7B02176DC0500E76805 /* GL_TriangleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GL_TriangleUITests.swift; sourceTree = "<group>"; };
 		4AE3C7B22176DC0500E76805 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4AE3C7BE2176DDFA00E76805 /* GLTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTriangleView.swift; sourceTree = "<group>"; };
+		4AE3C7BE2176DDFA00E76805 /* GLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,8 @@
 			children = (
 				4AE3C7902176DC0200E76805 /* AppDelegate.swift */,
 				4AE3C7922176DC0200E76805 /* ViewController.swift */,
-				4AE3C7BE2176DDFA00E76805 /* GLTriangleView.swift */,
+				4AE3C7BE2176DDFA00E76805 /* GLView.swift */,
+				4A27779621801FEE00E46FDD /* Shader.swift */,
 				4AE3C7942176DC0200E76805 /* Main.storyboard */,
 				4AE3C7972176DC0500E76805 /* Assets.xcassets */,
 				4AE3C7992176DC0500E76805 /* LaunchScreen.storyboard */,
@@ -259,8 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AE3C7BF2176DDFA00E76805 /* GLTriangleView.swift in Sources */,
+				4AE3C7BF2176DDFA00E76805 /* GLView.swift in Sources */,
 				4AE3C7932176DC0200E76805 /* ViewController.swift in Sources */,
+				4A27779721801FEE00E46FDD /* Shader.swift in Sources */,
 				4AE3C7912176DC0200E76805 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,12 +441,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZB4B6295XZ;
 				INFOPLIST_FILE = "GL-Triangle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "shuang.song.GL-Triangle";
+				PRODUCT_BUNDLE_IDENTIFIER = shuang.song.GL002;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,12 +459,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZB4B6295XZ;
 				INFOPLIST_FILE = "GL-Triangle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "shuang.song.GL-Triangle";
+				PRODUCT_BUNDLE_IDENTIFIER = shuang.song.GL002;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

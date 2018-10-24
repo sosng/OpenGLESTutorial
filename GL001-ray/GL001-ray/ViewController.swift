@@ -162,7 +162,7 @@ class ViewController: GLKViewController {
 extension ViewController: GLKViewControllerDelegate {
     
     func glkViewControllerUpdate(_ controller: GLKViewController) {
-        /*
+        
         // calculates the aspect ration of the GLKView
         let aspect = fabsf(Float(view.frame.width) / Float(view.frame.height))
         // use built-in function to create a perspective matrix, filed of view radians, aspect, near panel, far panel
@@ -176,7 +176,6 @@ extension ViewController: GLKViewControllerDelegate {
         
         modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(rotation), 0, 0, 1)
         effect.transform.modelviewMatrix = modelViewMatrix
-        */
     }
 }
 
