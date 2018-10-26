@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A27779721801FEE00E46FDD /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A27779621801FEE00E46FDD /* Shader.swift */; };
+		4A277799218167A600E46FDD /* shaderv.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4A277798218167A600E46FDD /* shaderv.vsh */; };
+		4A27779B218167B300E46FDD /* shaderf.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4A27779A218167B300E46FDD /* shaderf.fsh */; };
 		4AE3C7912176DC0200E76805 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3C7902176DC0200E76805 /* AppDelegate.swift */; };
 		4AE3C7932176DC0200E76805 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3C7922176DC0200E76805 /* ViewController.swift */; };
 		4AE3C7962176DC0200E76805 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AE3C7942176DC0200E76805 /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		4A27779621801FEE00E46FDD /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
+		4A277798218167A600E46FDD /* shaderv.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shaderv.vsh; sourceTree = "<group>"; };
+		4A27779A218167B300E46FDD /* shaderf.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shaderf.fsh; sourceTree = "<group>"; };
 		4AE3C78D2176DC0200E76805 /* GL-Triangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GL-Triangle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE3C7902176DC0200E76805 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AE3C7922176DC0200E76805 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				4AE3C7922176DC0200E76805 /* ViewController.swift */,
 				4AE3C7BE2176DDFA00E76805 /* GLView.swift */,
 				4A27779621801FEE00E46FDD /* Shader.swift */,
+				4A277798218167A600E46FDD /* shaderv.vsh */,
+				4A27779A218167B300E46FDD /* shaderf.fsh */,
 				4AE3C7942176DC0200E76805 /* Main.storyboard */,
 				4AE3C7972176DC0500E76805 /* Assets.xcassets */,
 				4AE3C7992176DC0500E76805 /* LaunchScreen.storyboard */,
@@ -235,9 +241,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A27779B218167B300E46FDD /* shaderf.fsh in Resources */,
 				4AE3C79B2176DC0500E76805 /* LaunchScreen.storyboard in Resources */,
 				4AE3C7982176DC0500E76805 /* Assets.xcassets in Resources */,
 				4AE3C7962176DC0200E76805 /* Main.storyboard in Resources */,
+				4A277799218167A600E46FDD /* shaderv.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -62,7 +62,7 @@ class GLView: UIView {
             var actualLength: GLsizei = 0
             glGetShaderInfoLog(program, bufferLength, &actualLength, UnsafeMutablePointer(mutating: info))
             
-            print("=============\nshader link status info: \(info)\n=============")
+            print("=============\nshader link status info: \(String(validatingUTF8: info))\n=============")
 
 //            return
         } else {
