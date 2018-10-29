@@ -163,7 +163,6 @@ class GLView: UIView {
 //        glBindRenderbuffer(GLenum(GL_RENDERBUFFER), renderBuffer)
         
         context?.presentRenderbuffer(Int(GL_RENDERBUFFER))
-        
         //
     }
     
