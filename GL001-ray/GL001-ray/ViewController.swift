@@ -109,7 +109,6 @@ class ViewController: GLKViewController {
                               GLsizei(vertexSize),
                               colorOffsetPointer)
 
-        
         // Create EBO Buffers
         // generate buffer and store its identifier into `ebo`
         glGenBuffers(1, &ebo)

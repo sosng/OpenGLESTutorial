@@ -1,0 +1,607 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4AFCFA362188410500D499C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCFA352188410500D499C4 /* AppDelegate.swift */; };
+		4AFCFA382188410500D499C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCFA372188410500D499C4 /* ViewController.swift */; };
+		4AFCFA3B2188410500D499C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCFA392188410500D499C4 /* Main.storyboard */; };
+		4AFCFA3D2188410600D499C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCFA3C2188410600D499C4 /* Assets.xcassets */; };
+		4AFCFA402188410600D499C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCFA3E2188410600D499C4 /* LaunchScreen.storyboard */; };
+		4AFCFA4B2188410600D499C4 /* GL_EBOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCFA4A2188410600D499C4 /* GL_EBOTests.swift */; };
+		4AFCFA562188410600D499C4 /* GL_EBOUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCFA552188410600D499C4 /* GL_EBOUITests.swift */; };
+		4AFCFA642188412400D499C4 /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCFA632188412400D499C4 /* Shader.swift */; };
+		4AFCFA662188417600D499C4 /* GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCFA652188417600D499C4 /* GLView.swift */; };
+		4AFCFA692188528A00D499C4 /* shaderf.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCFA672188528A00D499C4 /* shaderf.fsh */; };
+		4AFCFA6A2188528A00D499C4 /* shaderv.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCFA682188528A00D499C4 /* shaderv.vsh */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4AFCFA472188410600D499C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AFCFA2A2188410400D499C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4AFCFA312188410500D499C4;
+			remoteInfo = "GL-EBO";
+		};
+		4AFCFA522188410600D499C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AFCFA2A2188410400D499C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4AFCFA312188410500D499C4;
+			remoteInfo = "GL-EBO";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4AFCFA322188410500D499C4 /* GL-EBO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GL-EBO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AFCFA352188410500D499C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4AFCFA372188410500D499C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4AFCFA3A2188410500D499C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4AFCFA3C2188410600D499C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4AFCFA3F2188410600D499C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4AFCFA412188410600D499C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AFCFA462188410600D499C4 /* GL-EBOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GL-EBOTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AFCFA4A2188410600D499C4 /* GL_EBOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GL_EBOTests.swift; sourceTree = "<group>"; };
+		4AFCFA4C2188410600D499C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AFCFA512188410600D499C4 /* GL-EBOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GL-EBOUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AFCFA552188410600D499C4 /* GL_EBOUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GL_EBOUITests.swift; sourceTree = "<group>"; };
+		4AFCFA572188410600D499C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AFCFA632188412400D499C4 /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
+		4AFCFA652188417600D499C4 /* GLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLView.swift; sourceTree = "<group>"; };
+		4AFCFA672188528A00D499C4 /* shaderf.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaderf.fsh; sourceTree = "<group>"; };
+		4AFCFA682188528A00D499C4 /* shaderv.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaderv.vsh; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4AFCFA2F2188410500D499C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AFCFA432188410600D499C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AFCFA4E2188410600D499C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4AFCFA292188410400D499C4 = {
+			isa = PBXGroup;
+			children = (
+				4AFCFA342188410500D499C4 /* GL-EBO */,
+				4AFCFA492188410600D499C4 /* GL-EBOTests */,
+				4AFCFA542188410600D499C4 /* GL-EBOUITests */,
+				4AFCFA332188410500D499C4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4AFCFA332188410500D499C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4AFCFA322188410500D499C4 /* GL-EBO.app */,
+				4AFCFA462188410600D499C4 /* GL-EBOTests.xctest */,
+				4AFCFA512188410600D499C4 /* GL-EBOUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4AFCFA342188410500D499C4 /* GL-EBO */ = {
+			isa = PBXGroup;
+			children = (
+				4AFCFA352188410500D499C4 /* AppDelegate.swift */,
+				4AFCFA372188410500D499C4 /* ViewController.swift */,
+				4AFCFA652188417600D499C4 /* GLView.swift */,
+				4AFCFA672188528A00D499C4 /* shaderf.fsh */,
+				4AFCFA682188528A00D499C4 /* shaderv.vsh */,
+				4AFCFA632188412400D499C4 /* Shader.swift */,
+				4AFCFA392188410500D499C4 /* Main.storyboard */,
+				4AFCFA3C2188410600D499C4 /* Assets.xcassets */,
+				4AFCFA3E2188410600D499C4 /* LaunchScreen.storyboard */,
+				4AFCFA412188410600D499C4 /* Info.plist */,
+			);
+			path = "GL-EBO";
+			sourceTree = "<group>";
+		};
+		4AFCFA492188410600D499C4 /* GL-EBOTests */ = {
+			isa = PBXGroup;
+			children = (
+				4AFCFA4A2188410600D499C4 /* GL_EBOTests.swift */,
+				4AFCFA4C2188410600D499C4 /* Info.plist */,
+			);
+			path = "GL-EBOTests";
+			sourceTree = "<group>";
+		};
+		4AFCFA542188410600D499C4 /* GL-EBOUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4AFCFA552188410600D499C4 /* GL_EBOUITests.swift */,
+				4AFCFA572188410600D499C4 /* Info.plist */,
+			);
+			path = "GL-EBOUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4AFCFA312188410500D499C4 /* GL-EBO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AFCFA5A2188410600D499C4 /* Build configuration list for PBXNativeTarget "GL-EBO" */;
+			buildPhases = (
+				4AFCFA2E2188410500D499C4 /* Sources */,
+				4AFCFA2F2188410500D499C4 /* Frameworks */,
+				4AFCFA302188410500D499C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GL-EBO";
+			productName = "GL-EBO";
+			productReference = 4AFCFA322188410500D499C4 /* GL-EBO.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4AFCFA452188410600D499C4 /* GL-EBOTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AFCFA5D2188410600D499C4 /* Build configuration list for PBXNativeTarget "GL-EBOTests" */;
+			buildPhases = (
+				4AFCFA422188410600D499C4 /* Sources */,
+				4AFCFA432188410600D499C4 /* Frameworks */,
+				4AFCFA442188410600D499C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4AFCFA482188410600D499C4 /* PBXTargetDependency */,
+			);
+			name = "GL-EBOTests";
+			productName = "GL-EBOTests";
+			productReference = 4AFCFA462188410600D499C4 /* GL-EBOTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4AFCFA502188410600D499C4 /* GL-EBOUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AFCFA602188410600D499C4 /* Build configuration list for PBXNativeTarget "GL-EBOUITests" */;
+			buildPhases = (
+				4AFCFA4D2188410600D499C4 /* Sources */,
+				4AFCFA4E2188410600D499C4 /* Frameworks */,
+				4AFCFA4F2188410600D499C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4AFCFA532188410600D499C4 /* PBXTargetDependency */,
+			);
+			name = "GL-EBOUITests";
+			productName = "GL-EBOUITests";
+			productReference = 4AFCFA512188410600D499C4 /* GL-EBOUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4AFCFA2A2188410400D499C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = naver;
+				TargetAttributes = {
+					4AFCFA312188410500D499C4 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					4AFCFA452188410600D499C4 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 4AFCFA312188410500D499C4;
+					};
+					4AFCFA502188410600D499C4 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 4AFCFA312188410500D499C4;
+					};
+				};
+			};
+			buildConfigurationList = 4AFCFA2D2188410400D499C4 /* Build configuration list for PBXProject "GL-EBO" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4AFCFA292188410400D499C4;
+			productRefGroup = 4AFCFA332188410500D499C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4AFCFA312188410500D499C4 /* GL-EBO */,
+				4AFCFA452188410600D499C4 /* GL-EBOTests */,
+				4AFCFA502188410600D499C4 /* GL-EBOUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4AFCFA302188410500D499C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AFCFA6A2188528A00D499C4 /* shaderv.vsh in Resources */,
+				4AFCFA402188410600D499C4 /* LaunchScreen.storyboard in Resources */,
+				4AFCFA3D2188410600D499C4 /* Assets.xcassets in Resources */,
+				4AFCFA3B2188410500D499C4 /* Main.storyboard in Resources */,
+				4AFCFA692188528A00D499C4 /* shaderf.fsh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AFCFA442188410600D499C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AFCFA4F2188410600D499C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4AFCFA2E2188410500D499C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AFCFA382188410500D499C4 /* ViewController.swift in Sources */,
+				4AFCFA662188417600D499C4 /* GLView.swift in Sources */,
+				4AFCFA362188410500D499C4 /* AppDelegate.swift in Sources */,
+				4AFCFA642188412400D499C4 /* Shader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AFCFA422188410600D499C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AFCFA4B2188410600D499C4 /* GL_EBOTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AFCFA4D2188410600D499C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AFCFA562188410600D499C4 /* GL_EBOUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4AFCFA482188410600D499C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4AFCFA312188410500D499C4 /* GL-EBO */;
+			targetProxy = 4AFCFA472188410600D499C4 /* PBXContainerItemProxy */;
+		};
+		4AFCFA532188410600D499C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4AFCFA312188410500D499C4 /* GL-EBO */;
+			targetProxy = 4AFCFA522188410600D499C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4AFCFA392188410500D499C4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4AFCFA3A2188410500D499C4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4AFCFA3E2188410600D499C4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4AFCFA3F2188410600D499C4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4AFCFA582188410600D499C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4AFCFA592188410600D499C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4AFCFA5B2188410600D499C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZB4B6295XZ;
+				INFOPLIST_FILE = "GL-EBO/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = shuang.song.GL002;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4AFCFA5C2188410600D499C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZB4B6295XZ;
+				INFOPLIST_FILE = "GL-EBO/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = shuang.song.GL002;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4AFCFA5E2188410600D499C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZB4B6295XZ;
+				INFOPLIST_FILE = "GL-EBOTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "shuang.song.GL-EBOTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GL-EBO.app/GL-EBO";
+			};
+			name = Debug;
+		};
+		4AFCFA5F2188410600D499C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZB4B6295XZ;
+				INFOPLIST_FILE = "GL-EBOTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "shuang.song.GL-EBOTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GL-EBO.app/GL-EBO";
+			};
+			name = Release;
+		};
+		4AFCFA612188410600D499C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZB4B6295XZ;
+				INFOPLIST_FILE = "GL-EBOUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "shuang.song.GL-EBOUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "GL-EBO";
+			};
+			name = Debug;
+		};
+		4AFCFA622188410600D499C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZB4B6295XZ;
+				INFOPLIST_FILE = "GL-EBOUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "shuang.song.GL-EBOUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "GL-EBO";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4AFCFA2D2188410400D499C4 /* Build configuration list for PBXProject "GL-EBO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AFCFA582188410600D499C4 /* Debug */,
+				4AFCFA592188410600D499C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4AFCFA5A2188410600D499C4 /* Build configuration list for PBXNativeTarget "GL-EBO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AFCFA5B2188410600D499C4 /* Debug */,
+				4AFCFA5C2188410600D499C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4AFCFA5D2188410600D499C4 /* Build configuration list for PBXNativeTarget "GL-EBOTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AFCFA5E2188410600D499C4 /* Debug */,
+				4AFCFA5F2188410600D499C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4AFCFA602188410600D499C4 /* Build configuration list for PBXNativeTarget "GL-EBOUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AFCFA612188410600D499C4 /* Debug */,
+				4AFCFA622188410600D499C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4AFCFA2A2188410400D499C4 /* Project object */;
+}

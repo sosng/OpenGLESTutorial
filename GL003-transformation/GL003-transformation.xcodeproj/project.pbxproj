@@ -15,6 +15,7 @@
 		4A2777BE21830E9000E46FDD /* GL003_transformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2777BD21830E9000E46FDD /* GL003_transformationTests.swift */; };
 		4A2777C921830E9000E46FDD /* GL003_transformationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2777C821830E9000E46FDD /* GL003_transformationUITests.swift */; };
 		4A2777D721830E9F00E46FDD /* GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2777D621830E9F00E46FDD /* GLView.swift */; };
+		4A2777D92186B72500E46FDD /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2777D82186B72400E46FDD /* Vertex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4A2777C821830E9000E46FDD /* GL003_transformationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GL003_transformationUITests.swift; sourceTree = "<group>"; };
 		4A2777CA21830E9000E46FDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A2777D621830E9F00E46FDD /* GLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLView.swift; sourceTree = "<group>"; };
+		4A2777D82186B72400E46FDD /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				4A2777AA21830E8E00E46FDD /* ViewController.swift */,
 				4A2777D621830E9F00E46FDD /* GLView.swift */,
 				4A2777AC21830E8E00E46FDD /* Main.storyboard */,
+				4A2777D82186B72400E46FDD /* Vertex.swift */,
 				4A2777AF21830E9000E46FDD /* Assets.xcassets */,
 				4A2777B121830E9000E46FDD /* LaunchScreen.storyboard */,
 				4A2777B421830E9000E46FDD /* Info.plist */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A2777D721830E9F00E46FDD /* GLView.swift in Sources */,
+				4A2777D92186B72500E46FDD /* Vertex.swift in Sources */,
 				4A2777AB21830E8E00E46FDD /* ViewController.swift in Sources */,
 				4A2777A921830E8E00E46FDD /* AppDelegate.swift in Sources */,
 			);

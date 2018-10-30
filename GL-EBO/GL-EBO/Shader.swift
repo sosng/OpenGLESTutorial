@@ -1,8 +1,8 @@
 //
 //  Shader.swift
-//  GL-Triangle
+//  GL-EBO
 //
-//  Created by naver on 2018/10/24.
+//  Created by naver on 2018/10/30.
 //  Copyright © 2018 naver. All rights reserved.
 //
 
@@ -53,7 +53,7 @@ class Shader {
             
             glGetProgramInfoLog(program, bufferLength, &actualLength, UnsafeMutablePointer(mutating: info))
             print("=============\nshader link status info: \(String(describing: String(validatingUTF8: info)))\n=============")
-
+            
             exit(0)
         }
         
@@ -62,7 +62,7 @@ class Shader {
     
     private func compile(shader: String, type: GLenum) -> GLuint {
         guard let path = Bundle.main.path(forResource: shader, ofType: nil) else {
-                exit(0)
+            exit(0)
         }
         do {
             // 1 - 读取shaders string
@@ -90,7 +90,7 @@ class Shader {
                 
                 var actualLength: GLsizei = 0
                 glGetShaderInfoLog(shaderHandler, bufferLength, &actualLength, UnsafeMutablePointer(mutating: info))
-
+                
                 print("=============\nshader compile status info: \(String(describing: String(validatingUTF8: info)))\nshader string:\(shaderString)=============")
                 exit(0)
                 

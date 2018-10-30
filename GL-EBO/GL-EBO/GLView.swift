@@ -1,58 +1,57 @@
 //
 //  GLView.swift
-//  GL-Triangle
+//  GL-EBO
 //
-//  Created by naver on 2018/10/17.
+//  Created by naver on 2018/10/30.
 //  Copyright © 2018 naver. All rights reserved.
 //
 
 import UIKit
 import GLKit
 
-
 class GLView: UIView {
-    
+
     private var context: EAGLContext?
-    private var frameBuffer = GLuint()
-    private var renderBuffer = GLuint()
     
-    private var vao = GLuint()
-    private var vbo = GLuint()
+    //
+    private var renderBuffer = GLuint()
+    private var frameBuffer = GLuint()
     
     private var shader: Shader!
     
-    var vertices = [Vertext(1, 1, 0, 1, 1, 0, 0, 1),
-                    Vertext(1, -1, 0, 0, 1, 1, 0, 1),
-                    Vertext(0, 1, 0, 0, 0, 1, 1, 1)]
+    private var verticis = [Vertext(0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0), // 右上
+                            Vertext(0.5, -0.5, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0), // 右下
+                            Vertext(-0.5, -0.5, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0), // 左下
+                            Vertext(-0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0)] // 左上
+    
+    private var indecis = [0, 1, 2,
+                           2, 3, 0]
+    
+    var vao = GLuint()
+    var vbo = GLuint()
+    var ebo = GLuint()
     
     override class var layerClass: AnyClass {
         return CAEAGLLayer.self
     }
     
     override func layoutSubviews() {
-        // 设置layer
         setupLayer()
-        // 设置context
         setupContext()
-        // 避免重复设置，先要清除缓存
-        destoryFrameAndRenderBuffer()
-        // 设置渲染缓存
-        setupRenderBufer()
-        // 设置帧缓存
+        deinitRenderFrameBuffer()
+        setupRenderBuffer()
         setupFrameBuffer()
-        // load shader
         loadShader()
-        // 渲染
+        bufferObjects()
         render()
     }
     
     private func setupLayer() {
-        
-        guard let glLayer = layer as? CAEAGLLayer else { return }
-        glLayer.drawableProperties = [kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8,
-                                      kEAGLDrawablePropertyRetainedBacking: true]
-        glLayer.isOpaque = true
-        glLayer.contentsScale = UIScreen.main.scale
+        if let glLayer = self.layer as? CAEAGLLayer {
+            glLayer.isOpaque = true
+            glLayer.drawableProperties = [kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8, kEAGLDrawablePropertyRetainedBacking : true]
+            glLayer.contentsScale = UIScreen.main.scale
+        }
     }
     
     private func setupContext() {
@@ -60,14 +59,14 @@ class GLView: UIView {
         EAGLContext.setCurrent(context)
     }
     
-    private func destoryFrameAndRenderBuffer() {
+    private func deinitRenderFrameBuffer() {
         glDeleteFramebuffers(0, &frameBuffer)
         frameBuffer = 0
         glDeleteRenderbuffers(0, &renderBuffer)
         renderBuffer = 0
     }
     
-    private func setupRenderBufer() {
+    private func setupRenderBuffer() {
         glGenRenderbuffers(1, &renderBuffer)
         glBindRenderbuffer(GLenum(GL_RENDERBUFFER), renderBuffer)
         context?.renderbufferStorage(Int(GL_RENDERBUFFER), from: layer as? CAEAGLLayer)
@@ -86,34 +85,35 @@ class GLView: UIView {
         shader = Shader(vertexShader: "shaderv.vsh", fragShader: "shaderf.fsh")
     }
     
+    private func bufferObjects() {
+    }
+    
     private func render() {
-        // background color
         glClearColor(0.5, 0.5, 0.5, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-        
-        //设置viewport
         glViewport(0, 0, GLsizei(bounds.width), GLsizei(bounds.height))
+
         
-        // use shader
-        
-        
-        // start
         // vao
-        var vao = GLuint()
         glGenVertexArraysOES(1, &vao)
         glBindVertexArrayOES(vao)
         
         // vbo
-        var vbo = GLuint()
-        
         glGenBuffers(1, &vbo)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vbo)
         glBufferData(GLenum(GL_ARRAY_BUFFER),
-                     GLsizeiptr(vertices.size),
-                     vertices,
+                     GLsizeiptr(verticis.size),
+                     verticis,
                      GLenum(GL_STATIC_DRAW))
         
-        // 将position传给shader
+        // ebo
+        glGenBuffers(1, &ebo)
+        glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), ebo)
+        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER),
+                     GLsizeiptr(indecis.size),
+                     indecis,
+                     GLenum(GL_STATIC_DRAW))
+        
         let position = shader.attributeLocation("a_position")
         glVertexAttribPointer(position,
                               3,
@@ -123,15 +123,22 @@ class GLView: UIView {
                               nil)
         glEnableVertexAttribArray(position)
         
+        // Unbind VAO
+//        glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
+//        glBindVertexArrayOES(0)
+        
+    
         shader.prepareDraw()
-        // 开始绘制
-        glDrawArrays(GLenum(GL_TRIANGLES), 0, 3)
+        glBindVertexArrayOES(vao)
+        
+        glDrawElements(GLenum(GL_TRIANGLES),
+                       GLsizei(indecis.count),
+                       GLenum(GL_UNSIGNED_INT),
+                       nil)
         
         context?.presentRenderbuffer(Int(GL_RENDERBUFFER))
-        //
+        glBindVertexArrayOES(0)
     }
     
     
-    
 }
-
