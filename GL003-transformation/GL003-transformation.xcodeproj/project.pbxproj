@@ -15,7 +15,10 @@
 		4A2777BE21830E9000E46FDD /* GL003_transformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2777BD21830E9000E46FDD /* GL003_transformationTests.swift */; };
 		4A2777C921830E9000E46FDD /* GL003_transformationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2777C821830E9000E46FDD /* GL003_transformationUITests.swift */; };
 		4A2777D721830E9F00E46FDD /* GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2777D621830E9F00E46FDD /* GLView.swift */; };
-		4A2777D92186B72500E46FDD /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2777D82186B72400E46FDD /* Vertex.swift */; };
+		4AD880AD21898BB300858ADA /* shaderf.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4AD880AA21898BB300858ADA /* shaderf.fsh */; };
+		4AD880AE21898BB300858ADA /* shaderv.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4AD880AB21898BB300858ADA /* shaderv.vsh */; };
+		4AD880AF21898BB300858ADA /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD880AC21898BB300858ADA /* Shader.swift */; };
+		4AD880B3218AE26E00858ADA /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 4AD880B2218AE26E00858ADA /* GLESMath.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +53,12 @@
 		4A2777C821830E9000E46FDD /* GL003_transformationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GL003_transformationUITests.swift; sourceTree = "<group>"; };
 		4A2777CA21830E9000E46FDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A2777D621830E9F00E46FDD /* GLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLView.swift; sourceTree = "<group>"; };
-		4A2777D82186B72400E46FDD /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		4AD880AA21898BB300858ADA /* shaderf.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaderf.fsh; sourceTree = "<group>"; };
+		4AD880AB21898BB300858ADA /* shaderv.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaderv.vsh; sourceTree = "<group>"; };
+		4AD880AC21898BB300858ADA /* Shader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
+		4AD880B0218AE26E00858ADA /* GL003-transformation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GL003-transformation-Bridging-Header.h"; sourceTree = "<group>"; };
+		4AD880B1218AE26E00858ADA /* GLESMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLESMath.h; sourceTree = "<group>"; };
+		4AD880B2218AE26E00858ADA /* GLESMath.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GLESMath.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,11 +112,16 @@
 				4A2777A821830E8E00E46FDD /* AppDelegate.swift */,
 				4A2777AA21830E8E00E46FDD /* ViewController.swift */,
 				4A2777D621830E9F00E46FDD /* GLView.swift */,
+				4AD880AC21898BB300858ADA /* Shader.swift */,
+				4AD880B1218AE26E00858ADA /* GLESMath.h */,
+				4AD880B2218AE26E00858ADA /* GLESMath.c */,
+				4AD880AA21898BB300858ADA /* shaderf.fsh */,
+				4AD880AB21898BB300858ADA /* shaderv.vsh */,
 				4A2777AC21830E8E00E46FDD /* Main.storyboard */,
-				4A2777D82186B72400E46FDD /* Vertex.swift */,
 				4A2777AF21830E9000E46FDD /* Assets.xcassets */,
 				4A2777B121830E9000E46FDD /* LaunchScreen.storyboard */,
 				4A2777B421830E9000E46FDD /* Info.plist */,
+				4AD880B0218AE26E00858ADA /* GL003-transformation-Bridging-Header.h */,
 			);
 			path = "GL003-transformation";
 			sourceTree = "<group>";
@@ -199,6 +212,7 @@
 				TargetAttributes = {
 					4A2777A421830E8E00E46FDD = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1010;
 					};
 					4A2777B821830E9000E46FDD = {
 						CreatedOnToolsVersion = 10.0;
@@ -235,9 +249,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD880AE21898BB300858ADA /* shaderv.vsh in Resources */,
 				4A2777B321830E9000E46FDD /* LaunchScreen.storyboard in Resources */,
 				4A2777B021830E9000E46FDD /* Assets.xcassets in Resources */,
 				4A2777AE21830E8E00E46FDD /* Main.storyboard in Resources */,
+				4AD880AD21898BB300858ADA /* shaderf.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,9 +279,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A2777D721830E9F00E46FDD /* GLView.swift in Sources */,
-				4A2777D92186B72500E46FDD /* Vertex.swift in Sources */,
 				4A2777AB21830E8E00E46FDD /* ViewController.swift in Sources */,
+				4AD880B3218AE26E00858ADA /* GLESMath.c in Sources */,
 				4A2777A921830E8E00E46FDD /* AppDelegate.swift in Sources */,
+				4AD880AF21898BB300858ADA /* Shader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +457,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZB4B6295XZ;
 				INFOPLIST_FILE = "GL003-transformation/Info.plist";
@@ -449,6 +467,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "shuang.song.GL003-transformation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GL003-transformation/GL003-transformation-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -458,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZB4B6295XZ;
 				INFOPLIST_FILE = "GL003-transformation/Info.plist";
@@ -467,6 +488,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "shuang.song.GL003-transformation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GL003-transformation/GL003-transformation-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
