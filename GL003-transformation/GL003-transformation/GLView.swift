@@ -21,19 +21,19 @@ class GLView: UIView {
         return CAEAGLLayer.self
     }
     
-    private var degree: Float = 0.0
-    private var yDegree: Float = 0.0
+    private var degree: Float = 10.0
+    private var yDegree: Float = 10.0
     private var bX = false
     private var bY = false
     private var timer: Timer?
     
     
-    private let incides = [0, 3, 2,
-                           0, 1, 3,
-                           0, 2, 4,
-                           0, 4, 1,
-                           2, 3, 4,
-                           1, 4, 3]
+    private let incides: [GLubyte] = [0, 3, 2,
+                                               0, 1, 3,
+                                               0, 2, 4,
+                                               0, 4, 1,
+                                               2, 3, 4,
+                                               1, 4, 3,]
     
     private let vertices = [Vertext(-0.5, 0.5, 0.0, 1.0, 0.0, 1.0),
                             Vertext(0.5, 0.5, 0.0, 1.0, 0.0, 1.0),
@@ -53,6 +53,7 @@ class GLView: UIView {
     
     
     private func setupLayer() {
+        contentScaleFactor = UIScreen.main.scale
         if let glLayer = self.layer as? CAEAGLLayer {
             glLayer.drawableProperties = [kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8, kEAGLDrawablePropertyRetainedBacking: false]
             glLayer.isOpaque = true
@@ -91,8 +92,10 @@ class GLView: UIView {
     }
     
     private func render() {
-        glClearColor(0.0, 0.0, 0.0, 1.0)
+        glClearColor(0.5, 0.5, 0.5, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
+        
+        shader.prepareDraw()
         
         let scale = UIScreen.main.scale
         glViewport(GLint(frame.origin.x * scale),
@@ -102,8 +105,8 @@ class GLView: UIView {
         
         shader.prepareDraw()
         
-//        glGenVertexArraysOES(1, &vao)
-//        glBindVertexArrayOES(vao)
+        glGenVertexArraysOES(1, &vao)
+        glBindVertexArrayOES(vao)
 
         glGenBuffers(1, &vbo)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vbo)
@@ -111,7 +114,6 @@ class GLView: UIView {
                      vertices.size,
                      vertices,
                      GLenum(GL_DYNAMIC_DRAW))
-        glBindBuffer(GLenum(GL_ARRAY_BUFFER), vbo)
         
         // shader attribute
         let postition = shader.attributeLocation("position")
@@ -130,7 +132,9 @@ class GLView: UIView {
                               GLboolean(GL_FALSE),
                               GLsizei(MemoryLayout<Vertext>.stride),
                               UnsafeRawPointer(bitPattern: MemoryLayout<Vertext>.stride * 3))
+        glEnableVertexAttribArray(color)
     
+        
         let pojectionMatrixSlot = shader.unifromLocation("projectionMatrix")
         let modelViewMatrixSlot = shader.unifromLocation("modelViewMatrix")
         
@@ -157,7 +161,7 @@ class GLView: UIView {
         ksMatrixLoadIdentity(&modelViewMatrix)
         
         // 平移
-        ksTranslate(&modelViewMatrix, 0.0, 0.0, -10.0)
+//        ksTranslate(&modelViewMatrix, 0.0, 0.0, -10.0)
         // 旋转
         var rotationMatrix = KSMatrix4()
         ksMatrixLoadIdentity(&rotationMatrix)
@@ -167,7 +171,7 @@ class GLView: UIView {
         // 将变换矩阵相乘
         var temp = modelViewMatrix
         ksMatrixMultiply(&temp, &rotationMatrix, &modelViewMatrix)
-        
+        memcpy(&modelViewMatrix, &temp, MemoryLayout<KSMatrix4>.size)
         //
         glUniformMatrix4fv(GLint(modelViewMatrixSlot),
                            1,
@@ -175,8 +179,8 @@ class GLView: UIView {
                            &modelViewMatrix.m.0.0)
         
         glDrawElements(GLenum(GL_TRIANGLES),
-                       GLsizei(incides.count),
-                       GLenum(GL_UNSIGNED_INT),
+                       GLsizei(incides.size),
+                       GLenum(GL_UNSIGNED_BYTE),
                        incides)
         
         context?.presentRenderbuffer(Int(GL_RENDERBUFFER))
@@ -186,7 +190,7 @@ class GLView: UIView {
         if timer == nil {
             timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(onRes), userInfo: nil, repeats: true)
         }
-        bX = !bX;
+        bX = !bX
     }
     
     @IBAction func tapY(_ sender: Any) {

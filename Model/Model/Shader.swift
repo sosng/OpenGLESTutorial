@@ -1,8 +1,8 @@
 //
 //  Shader.swift
-//  GL-EBO
+//  Model
 //
-//  Created by naver on 2018/10/30.
+//  Created by naver on 2018/11/5.
 //  Copyright © 2018 naver. All rights reserved.
 //
 
@@ -11,10 +11,10 @@ import GLKit
 
 class Shader {
     
-    private var programHandle = GLuint()
+    var programHandle: GLuint = 0
     
-    init(vertexShader: String, fragShader: String) {
-        programHandle = compile(vertextShader: vertexShader, fragShader: fragShader)
+    init(vertextShader: String, fragShader: String) {
+        load(vertexShader: vertextShader, fragShader: fragShader)
     }
     
     func prepareDraw() {
@@ -29,39 +29,41 @@ class Shader {
         return GLuint(glGetUniformLocation(programHandle, name))
     }
     
-    private func compile(vertextShader: String, fragShader: String) -> GLuint {
-        // 1
-        let vertexShaderName = compile(shader: vertextShader, type: GLenum(GL_VERTEX_SHADER))
-        let fragmentShaderName = compile(shader: fragShader, type: GLenum(GL_FRAGMENT_SHADER))
-        // 2
-        let program = glCreateProgram()
-        // 3
-        glAttachShader(program, vertexShaderName)
-        glAttachShader(program, fragmentShaderName)
-        //
-        glLinkProgram(program)
-        //
+    
+    private func load(vertexShader: String, fragShader: String) {
+        // compile
+        var vertexShaderHandler = compile(shaderPath: vertexShader, type: GLenum(GL_VERTEX_SHADER))
+        var fragShaderHandler = compile(shaderPath: fragShader, type: GLenum(GL_FRAGMENT_SHADER))
+        
+        programHandle = glCreateProgram()
+        glAttachShader(programHandle, vertexShaderHandler)
+        glAttachShader(programHandle, fragShaderHandler)
+        
+        // link
+        glLinkProgram(programHandle)
+        
         var linkStatus = GLint()
-        glGetProgramiv(program, GLenum(GL_LINK_STATUS), &linkStatus)
+        glGetProgramiv(programHandle, GLenum(GL_LINK_STATUS), &linkStatus)
         if linkStatus == GL_FALSE {
             var infoLength : GLsizei = 0
             let bufferLength : GLsizei = 1024
-            glGetProgramiv(program, GLenum(GL_INFO_LOG_LENGTH), &infoLength)
+            glGetProgramiv(programHandle, GLenum(GL_INFO_LOG_LENGTH), &infoLength)
             
             let info: [GLchar] = Array(repeating: GLchar(0), count: Int(bufferLength))
             var actualLength : GLsizei = 0
             
-            glGetProgramInfoLog(program, bufferLength, &actualLength, UnsafeMutablePointer(mutating: info))
+            glGetProgramInfoLog(programHandle, bufferLength, &actualLength, UnsafeMutablePointer(mutating: info))
             print("=============\nshader link status info: \(String(describing: String(validatingUTF8: info)))\n=============")
             
             exit(0)
         }
         
-        return program
+        
     }
     
-    private func compile(shader: String, type: GLenum) -> GLuint {
-        guard let path = Bundle.main.path(forResource: shader, ofType: nil) else {
+    private func compile(shaderPath: String, type: GLenum) -> GLuint {
+        
+        guard let path = Bundle.main.path(forResource: shaderPath, ofType: nil) else {
             exit(0)
         }
         do {
@@ -100,31 +102,11 @@ class Shader {
         } catch {
             exit(0)
         }
-        
+
     }
     
-}
-
-struct Vertext {
-    var x: GLfloat
-    var y: GLfloat
-    var z: GLfloat
-    var r: GLfloat
-    var g: GLfloat
-    var b: GLfloat
     
-    init(_ x: GLfloat, _ y: GLfloat, _ z: GLfloat, _ r: GLfloat, _ g: GLfloat, _ b: GLfloat) {
-        self.x = x
-        self.y = y
-        self.z = z
-        self.r = r
-        self.g = g
-        self.b = b
-    }
-}
-
-extension Array {
-    var size: Int {
-        return MemoryLayout<Element>.stride * count
-    }
+    
+    
+    
 }

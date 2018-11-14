@@ -22,7 +22,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="X"/>
                                 <connections>
-                                    <action selector="tapX:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="WeM-Ek-5Bp"/>
+                                    <action selector="tapX:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="UnQ-s4-fTt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFn-H6-ZM1">
@@ -30,7 +30,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Y"/>
                                 <connections>
-                                    <action selector="tapY:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="ahP-MZ-oLK"/>
+                                    <action selector="tapY:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="72F-FG-eRN"/>
                                 </connections>
                             </button>
                         </subviews>

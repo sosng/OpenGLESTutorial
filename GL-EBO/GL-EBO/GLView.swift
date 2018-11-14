@@ -19,13 +19,13 @@ class GLView: UIView {
     
     private var shader: Shader!
     
-    private var verticis = [Vertext(0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0), // 右上
-                            Vertext(0.5, -0.5, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0), // 右下
-                            Vertext(-0.5, -0.5, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0), // 左下
-                            Vertext(-0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0)] // 左上
+    private var verticis = [Vertext(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0), // 右上
+                            Vertext(1.0, -1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0), // 右下
+                            Vertext(-1.0, -1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0), // 左下
+                            Vertext(-1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0)] // 左上
     
-    private var indecis = [0, 1, 2,
-                           2, 3, 0]
+    private var indecis: [GLubyte] = [0, 1, 2,
+                                      2, 3, 0]
     
     var vao = GLuint()
     var vbo = GLuint()
@@ -91,8 +91,8 @@ class GLView: UIView {
     private func render() {
         glClearColor(0.5, 0.5, 0.5, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-        glViewport(0, 0, GLsizei(bounds.width), GLsizei(bounds.height))
-
+        let scale = UIScreen.main.scale
+        glViewport(0, 0, GLsizei(scale * bounds.width), GLsizei(scale * bounds.height))
         
         // vao
         glGenVertexArraysOES(1, &vao)
@@ -124,16 +124,17 @@ class GLView: UIView {
         glEnableVertexAttribArray(position)
         
         // Unbind VAO
-//        glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
-//        glBindVertexArrayOES(0)
+        glBindVertexArrayOES(0)
+        glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
+        glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), 0)
         
-    
         shader.prepareDraw()
+        
         glBindVertexArrayOES(vao)
         
         glDrawElements(GLenum(GL_TRIANGLES),
                        GLsizei(indecis.count),
-                       GLenum(GL_UNSIGNED_INT),
+                       GLenum(GL_UNSIGNED_BYTE),
                        nil)
         
         context?.presentRenderbuffer(Int(GL_RENDERBUFFER))

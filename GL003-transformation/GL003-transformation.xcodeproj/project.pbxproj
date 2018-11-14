@@ -19,6 +19,7 @@
 		4AD880AE21898BB300858ADA /* shaderv.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4AD880AB21898BB300858ADA /* shaderv.vsh */; };
 		4AD880AF21898BB300858ADA /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD880AC21898BB300858ADA /* Shader.swift */; };
 		4AD880B3218AE26E00858ADA /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 4AD880B2218AE26E00858ADA /* GLESMath.c */; };
+		4AD880B5219010BA00858ADA /* GLLearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD880B4219010BA00858ADA /* GLLearView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		4AD880B0218AE26E00858ADA /* GL003-transformation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GL003-transformation-Bridging-Header.h"; sourceTree = "<group>"; };
 		4AD880B1218AE26E00858ADA /* GLESMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLESMath.h; sourceTree = "<group>"; };
 		4AD880B2218AE26E00858ADA /* GLESMath.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GLESMath.c; sourceTree = "<group>"; };
+		4AD880B4219010BA00858ADA /* GLLearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLLearView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +115,11 @@
 				4A2777AA21830E8E00E46FDD /* ViewController.swift */,
 				4A2777D621830E9F00E46FDD /* GLView.swift */,
 				4AD880AC21898BB300858ADA /* Shader.swift */,
+				4AD880B4219010BA00858ADA /* GLLearView.swift */,
 				4AD880B1218AE26E00858ADA /* GLESMath.h */,
 				4AD880B2218AE26E00858ADA /* GLESMath.c */,
-				4AD880AA21898BB300858ADA /* shaderf.fsh */,
 				4AD880AB21898BB300858ADA /* shaderv.vsh */,
+				4AD880AA21898BB300858ADA /* shaderf.fsh */,
 				4A2777AC21830E8E00E46FDD /* Main.storyboard */,
 				4A2777AF21830E9000E46FDD /* Assets.xcassets */,
 				4A2777B121830E9000E46FDD /* LaunchScreen.storyboard */,
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A2777D721830E9F00E46FDD /* GLView.swift in Sources */,
+				4AD880B5219010BA00858ADA /* GLLearView.swift in Sources */,
 				4A2777AB21830E8E00E46FDD /* ViewController.swift in Sources */,
 				4AD880B3218AE26E00858ADA /* GLESMath.c in Sources */,
 				4A2777A921830E8E00E46FDD /* AppDelegate.swift in Sources */,

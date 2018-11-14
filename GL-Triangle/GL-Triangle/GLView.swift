@@ -47,7 +47,6 @@ class GLView: UIView {
     }
     
     private func setupLayer() {
-        
         guard let glLayer = layer as? CAEAGLLayer else { return }
         glLayer.drawableProperties = [kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8,
                                       kEAGLDrawablePropertyRetainedBacking: true]
@@ -92,7 +91,8 @@ class GLView: UIView {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         
         //设置viewport
-        glViewport(0, 0, GLsizei(bounds.width), GLsizei(bounds.height))
+        let scale = UIScreen.main.scale
+        glViewport(0, 0, GLsizei(scale * bounds.width), GLsizei(scale * bounds.height))
         
         // use shader
         
