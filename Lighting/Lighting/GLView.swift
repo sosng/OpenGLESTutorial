@@ -17,13 +17,15 @@ class GLView: UIView {
     private var vao = GLuint()
     private var vbo = GLuint()
     private var ebo = GLuint()
+    private var normalVAO = GLuint()
+    private var normalVBO = GLuint()
     private var shader: Shader!
     override class var layerClass: AnyClass {
         return CAEAGLLayer.self
     }
     
-    private var degree: Float = 10.0
-    private var yDegree: Float = 10.0
+    private var degree: Float = 0.0
+    private var yDegree: Float = 0.0
     private var bX = false
     private var bY = false
     private var timer: Timer?
@@ -48,15 +50,62 @@ class GLView: UIView {
                               3, 5, 4,
                               5, 7, 4,
                               5, 6, 7]
+//    
+//    let vertices = [Vertext(-0.5, 0.5, -0.5, 1.0,     1.0, 0.0, 0.0, 1.0,   0, 1, 0),
+//                    Vertext(0.5, 0.5, -0.5, 1.0,      1.0, 0.0, 0.0, 1.0,   0, 0, -1),
+//                    Vertext(0.5, 0.5, 0.5, 1.0,       1.0, 0.0, 0.0, 1.0,   0, 0, 1),
+//                    Vertext(-0.5, 0.5, 0.5, 1.0,      1.0, 0.0, 0.0, 1.0,   -1, 0, 0),
+//                    Vertext(-0.5, -0.5, 0.5, 1.0,     1.0, 0.0, 0.0, 1.0,   0, -1, 0),
+//                    Vertext(-0.5, -0.5, -0.5, 1.0,    1.0, 0.0, 0.0, 1.0,   0, 0, -1),
+//                    Vertext(0.5, -0.5, -0.5, 1.0,     1.0, 0.0, 0.0, 1.0,   0, -1, 0),
+//                    Vertext(0.5, -0.5, 0.5, 1.0,      1.0, 0.0, 0.0, 1.0,   1, 0, 0)]
     
-    let vertices = [Vertext(-0.5, 0.5, -0.5, 1.0,     1.0, 0.0, 0.0, 1.0),
-                    Vertext(0.5, 0.5, -0.5, 1.0,      1.0, 0.0, 0.0, 1.0),
-                    Vertext(0.5, 0.5, 0.5, 1.0,       0.0, 1.0, 0.0, 1.0),
-                    Vertext(-0.5, 0.5, 0.5, 1.0,      0.0, 1.0, 0.0, 1.0),
-                    Vertext(-0.5, -0.5, 0.5, 1.0,     0.0, 0.0, 1.0, 1.0),
-                    Vertext(-0.5, -0.5, -0.5, 1.0,    0.0, 0.0, 1.0, 1.0),
-                    Vertext(0.5, -0.5, -0.5, 1.0,     0.0, 1.0, 0.0, 1.0),
-                    Vertext(0.5, -0.5, 0.5, 1.0,      0.0, 1.0, 0.0, 1.0)]
+    let vertices = [
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+    
+    0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+    0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+    0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+    0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+    0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+    0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+    
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+    0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+    0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+    0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+    
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+    0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+    0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+    0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+    ]
+    
+    // 每个面的法线向量
+//    var normals = [NormalVector(0, 0, 0)]
 
 //    private let vertices = [Vertext(-0.5, 0.5, 0.0, 1.0,   1.0, 0.0, 0.0, 1.0),
 //                            Vertext(0.5, 0.5, 0.0, 1.0,    0.0, 1.0, 0.0, 1.0),
@@ -168,13 +217,28 @@ class GLView: UIView {
                               GLsizei(MemoryLayout<Vertext>.stride),
                               UnsafeRawPointer(bitPattern: MemoryLayout<GLfloat>.size * 4))
         glEnableVertexAttribArray(color)
-    
+        
+        // 法线
+        let normal = shader.attributeLocation("normal")
+        glVertexAttribPointer(normal,
+                              3,
+                              GLenum(GL_FLOAT),
+                              GLboolean(GL_FALSE),
+                              GLsizei(MemoryLayout<NormalVector>.stride),
+                               UnsafeRawPointer(bitPattern: MemoryLayout<GLfloat>.size * 8))
+        glEnableVertexAttribArray(normal)
+        
+        // 平行光照
+        let lightDirection = GLKVector3(v: (0.0, -1.0, 0.0))
+        
         glBindVertexArrayOES(0)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
         glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), 0)
         
         let pojectionMatrixSlot = shader.unifromLocation("projectionMatrix")
         let modelViewMatrixSlot = shader.unifromLocation("modelViewMatrix")
+        // 平行光
+        let lightDirectionSlot = shader.unifromLocation("lightDirection")
         
         let width = frame.size.width
         let height = frame.size.height
@@ -202,8 +266,7 @@ class GLView: UIView {
         rotationMatrix = GLKMatrix4Rotate(rotationMatrix, yDegree, 0.0, 1.0, 0.0) // Y 轴
         
         // 将变换矩阵相乘
-        var temp = GLKMatrix4Identity
-        temp = GLKMatrix4Multiply(modelViewMatrix, rotationMatrix)
+        var temp = GLKMatrix4Multiply(modelViewMatrix, rotationMatrix)
         
         // 设置到shader
         glUniformMatrix4fv(GLint(modelViewMatrixSlot),
@@ -212,8 +275,21 @@ class GLView: UIView {
                            temp.array)
         glEnable(GLenum(GL_CULL_FACE))
         
-        // start render
+        // 法线矩阵
+        var canInvert = true
+        let normalMatrix = GLKMatrix4InvertAndTranspose(modelViewMatrix, &canInvert)
+        if canInvert {
+            let normalMatrixSlot = shader.unifromLocation("normalMatrix")
+            glUniformMatrix4fv(GLint(normalMatrixSlot),
+                               1,
+                               GLboolean(GL_FALSE),
+                               normalMatrix.array)
+        }
         
+        // 光照设置到 shader
+        glUniform3fv(GLint(lightDirectionSlot), 1, lightDirection.array)
+        
+        // start render
         glBindVertexArrayOES(vao)
         glDrawElements(GLenum(GL_TRIANGLES),
                        GLsizei(incides.count),

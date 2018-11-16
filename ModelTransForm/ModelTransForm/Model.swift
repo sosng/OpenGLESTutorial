@@ -28,8 +28,11 @@ class Model {
     var rotationX = Float(0)
     var rotationY = Float(0)
     var rotationZ = Float(0)
-    var scale = Float(1.0)
+    var scale = Float(0.5)
     var modelMatrix: GLKMatrix4 = GLKMatrix4Identity
+    
+    // shader
+    var modelMatrixHandler = GLuint(0)
     
     init(name: String, shader: Shader, vertices: [Vertex], indices: [GLubyte], context: EAGLContext) {
         
@@ -81,9 +84,7 @@ class Model {
                               UnsafeRawPointer(bitPattern: 3 * MemoryLayout<GLfloat>.stride))
         glEnableVertexAttribArray(color)
         
-        let modelMatrixUniform = shader.unifromLocation("u_ModelViewMatrix")
-        
-        glUniformMatrix4fv(GLint(modelMatrixUniform), 1, GLboolean(GL_FALSE), modelMatrix.array)
+        modelMatrixHandler = shader.unifromLocation("u_ModelViewMatrix")
 //        shader.uniformMatrix(GLint(modelMatrixUniform), value: &modelMatrix)
 
         glBindVertexArrayOES(0)
@@ -102,8 +103,13 @@ class Model {
     }
     
     func render() {
-        modelMatrix = modelMatrixTransform()
         shader.prepareDraw()
+        glUniformMatrix4fv(GLint(modelMatrixHandler),
+                           1,
+                           GLboolean(GL_FALSE),
+                           modelMatrix.array)
+        modelMatrix = modelMatrixTransform()
+
         glBindVertexArrayOES(vao)
         glDrawElements(GLenum(GL_TRIANGLES),
                        GLsizei(indices.count),
