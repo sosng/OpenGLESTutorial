@@ -19,6 +19,7 @@ class GLView: UIView {
     private var ebo = GLuint()
     private var normalVAO = GLuint()
     private var normalVBO = GLuint()
+    private var uvHandeler = GLuint()
     private var shader: Shader!
     override class var layerClass: AnyClass {
         return CAEAGLLayer.self
@@ -51,14 +52,38 @@ class GLView: UIView {
                               5, 7, 4,
                               5, 6, 7]
     
-    let vertices = [Vertext(-0.5, 0.5, -0.5, 1.0,     1.0, 0.0, 0.0, 1.0,    -0.5773502691896258, 0.5773502691896258, -0.5773502691896258),
-                    Vertext(0.5, 0.5, -0.5, 1.0,      1.0, 0.0, 0.0, 1.0,    0.5773502691896258, 0.5773502691896258, -0.5773502691896258),
-                    Vertext(0.5, 0.5, 0.5, 1.0,       1.0, 0.0, 0.0, 1.0,    0.5773502691896258, 0.5773502691896258, 0.5773502691896258),
-                    Vertext(-0.5, 0.5, 0.5, 1.0,      1.0, 0.0, 0.0, 1.0,    -0.5773502691896258, 0.5773502691896258, 0.577350269189625),
-                    Vertext(-0.5, -0.5, 0.5, 1.0,     1.0, 0.0, 0.0, 1.0,    -0.5773502691896258, -0.5773502691896258, 0.5773502691896258),
-                    Vertext(-0.5, -0.5, -0.5, 1.0,    1.0, 0.0, 0.0, 1.0,    -0.5773502691896258, -0.5773502691896258, -0.5773502691896258),
-                    Vertext(0.5, -0.5, -0.5, 1.0,     1.0, 0.0, 0.0, 1.0,    0.5773502691896258, -0.5773502691896258, -0.5773502691896258),
-                    Vertext(0.5, -0.5, 0.5, 1.0,      1.0, 0.0, 0.0, 1.0,    0.5773502691896258, -0.5773502691896258, 0.5773502691896258)]
+    let vertices = [Vertext(-0.5, 0.5, -0.5, 1.0,
+                            1.0, 0.0, 0.0, 1.0,
+                            -0.5773502691896258, 0.5773502691896258, -0.5773502691896258,
+                            0.0, 0.0),
+                    Vertext(0.5, 0.5, -0.5, 1.0,
+                            1.0, 0.0, 0.0, 1.0,
+                            0.5773502691896258, 0.5773502691896258, -0.5773502691896258,
+                            1.0, 0.0),
+                    Vertext(0.5, 0.5, 0.5, 1.0,
+                            1.0, 0.0, 0.0, 1.0,
+                            0.5773502691896258, 0.5773502691896258, 0.5773502691896258,
+                            1.0, 1.0),
+                    Vertext(-0.5, 0.5, 0.5, 1.0,
+                            1.0, 0.0, 0.0, 1.0,
+                            -0.5773502691896258, 0.5773502691896258, 0.577350269189625,
+                            0.0, 1.0),
+                    Vertext(-0.5, -0.5, 0.5, 1.0,
+                            1.0, 0.0, 0.0, 1.0,
+                            -0.5773502691896258, -0.5773502691896258, 0.5773502691896258,
+                            1.0, 1.0),
+                    Vertext(-0.5, -0.5, -0.5, 1.0,
+                            1.0, 0.0, 0.0, 1.0,
+                            -0.5773502691896258, -0.5773502691896258, -0.5773502691896258,
+                            1.0, 0.0),
+                    Vertext(0.5, -0.5, -0.5, 1.0,
+                            1.0, 0.0, 0.0, 1.0,
+                            0.5773502691896258, -0.5773502691896258, -0.5773502691896258,
+                            0.0, 0.0),
+                    Vertext(0.5, -0.5, 0.5, 1.0,
+                            1.0, 0.0, 0.0, 1.0,
+                            0.5773502691896258, -0.5773502691896258, 0.5773502691896258,
+                            0.0, 1.0)]
 //
 //    let vertices: [GLfloat] = [-0.5, -0.5, -0.5,  0.0,  0.0, -1.0,
 //                            0.5, -0.5, -0.5,  0.0,  0.0, -1.0,
@@ -119,8 +144,9 @@ class GLView: UIView {
         setupFrameBuffer()
         setupShader()
         render()
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(pan(gesture:)))
+        self.addGestureRecognizer(gesture)
     }
-    
     
     private func setupLayer() {
         contentScaleFactor = UIScreen.main.scale
@@ -209,7 +235,7 @@ class GLView: UIView {
         
         let color = shader.attributeLocation("positionColor")
         glVertexAttribPointer(color,
-                              3,
+                              4,
                               GLenum(GL_FLOAT),
                               GLboolean(GL_FALSE),
                               GLsizei(MemoryLayout<Vertext>.stride),
@@ -226,8 +252,27 @@ class GLView: UIView {
                                UnsafeRawPointer(bitPattern: MemoryLayout<GLfloat>.size * 8))
         glEnableVertexAttribArray(normal)
         
+        // 纹理坐标
+        let uv = shader.attributeLocation("uv")
+        glVertexAttribPointer(uv,
+                              2,
+                              GLenum(GL_FLOAT),
+                              GLboolean(GL_FALSE),
+                              GLsizei(MemoryLayout<Vertext>.stride),
+                              UnsafeRawPointer(bitPattern: MemoryLayout<GLfloat>.size * 11))
+        glEnableVertexAttribArray(uv)
+        // 纹理坐标句柄
+        if uvHandeler == 0 {
+           uvHandeler = genTexture()
+        }
+        // 绑定纹理
+        let diffuseMapSlot = shader.unifromLocation("diffuseMap")
+        glActiveTexture(GLenum(GL_TEXTURE1))
+        glBindTexture(GLenum(GL_TEXTURE_2D), uvHandeler)
+        glUniform1i(GLint(diffuseMapSlot), 1)
+        
         // 平行光照
-        let lightDirection = GLKVector3(v: (1.0, -1.0, 0.0))
+        let lightDirection = GLKVector3(v: (1.0, 1.0, 1.0))
         
         glBindVertexArrayOES(0)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
@@ -253,6 +298,7 @@ class GLView: UIView {
                            projectionMatrix.array)
         // 背景剔除
         glEnable(GLenum(GL_CULL_FACE))
+        
         
         // 模型
         var modelViewMatrix = GLKMatrix4Identity
@@ -300,7 +346,59 @@ class GLView: UIView {
         context?.presentRenderbuffer(Int(GL_RENDERBUFFER))
     }
     
+    private func genTexture() -> GLuint {
+        // 获取纹理图片
+        guard let image = UIImage(named: "texture.jpg")?.cgImage else { fatalError() }
+        
+        let width = image.width
+        let height = image.height
+        
+        let spriteData = calloc(height * width * 4, MemoryLayout<GLubyte>.stride)
+        let context = CGContext(data: spriteData,
+                                width: width,
+                                height: height,
+                                bitsPerComponent: 8,
+                                bytesPerRow: width * 4,
+                                space: image.colorSpace!,
+                                bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue)
+        
+        // 在CGContext上绘图
+        context?.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+        
+        // 生成纹理句柄
+        var texture = GLuint()
+        glGenTextures(1, &texture)
+        glBindTexture(GLenum(GL_TEXTURE_2D), texture)
+        glTexImage2D(GLenum(GL_TEXTURE_2D),
+                     0,
+                     GLint(GL_RGBA),
+                     GLsizei(width),
+                     GLsizei(height),
+                     GLint(0),
+                     GLenum(GL_RGBA),
+                     GLenum(GL_UNSIGNED_BYTE),
+                     spriteData)
+        // 采样方式和重复方式
+        glTexParameteri(GLenum(GL_TEXTURE_2D),
+                        GLenum(GL_TEXTURE_MIN_FILTER),
+                        GLint(GL_LINEAR))
+        glTexParameteri(GLenum(GL_TEXTURE_2D),
+                        GLenum(GL_TEXTURE_MAG_FILTER),
+                        GLint(GL_LINEAR))
+        glTexParameteri(GLenum(GL_TEXTURE_2D),
+                        GLenum(GL_TEXTURE_WRAP_S),
+                        GLint(GL_CLAMP_TO_EDGE))
+        glTexParameteri(GLenum(GL_TEXTURE_2D),
+                        GLenum(GL_TEXTURE_WRAP_T),
+                        GLint(GL_CLAMP_TO_EDGE))
+        
+        free(spriteData)
+        return texture
+    }
     
+    @objc private func pan(gesture: UIGestureRecognizer) {
+        
+    }
     
     @IBAction func tapX(_ sender: Any) {
         if timer == nil {
