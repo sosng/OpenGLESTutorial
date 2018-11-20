@@ -360,10 +360,11 @@ class GLView: UIView {
                                 bitsPerComponent: 8,
                                 bytesPerRow: width * 4,
                                 space: image.colorSpace!,
-                                bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue)
+                                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
         
         // 在CGContext上绘图
         context?.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+        context?.flush()
         
         // 生成纹理句柄
         var texture = GLuint()
