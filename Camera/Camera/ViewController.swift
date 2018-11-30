@@ -19,12 +19,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSession()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         startCamera()
+        configureSession()
+        videPreViewView.isFullYUVRange = true
+        videPreViewView.setupGL()
     }
     
     private func configureSession() {
@@ -43,15 +41,13 @@ class ViewController: UIViewController {
                 session.addInput(deviceInput)
             }
             
-            
-            
             let videoOutPut = AVCaptureVideoDataOutput()
             videoOutPut.alwaysDiscardsLateVideoFrames = false
-            videoOutPut.videoSettings = [String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange]
+            videoOutPut.videoSettings = [String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_420YpCbCr8BiPlanarFullRange]
             if session.canAddOutput(videoOutPut) {
                 session.addOutput(videoOutPut)
             }
-            videoOutPut.setSampleBufferDelegate(self, queue: queue)
+            videoOutPut.setSampleBufferDelegate(self, queue: DispatchQueue.main)
             
         } catch {
             print("\(error)")
@@ -72,9 +68,8 @@ class ViewController: UIViewController {
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if let pixleBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
-            videPreViewView.display(pixleBuffer)
-        }
+        let pixleBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+        videPreViewView.display(pixleBuffer)
     }
     
     
